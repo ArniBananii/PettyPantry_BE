@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="de.pettypantry.PettypantryApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-16T09:44:29" hostname="Arnos-MacBook-Pro.local" time="0.682">
+<testsuite name="de.pettypantry.PettypantryApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-19T20:26:49" hostname="Arnos-MacBook-Pro.local" time="0.722">
   <properties/>
-  <testcase name="contextLoads()" classname="de.pettypantry.PettypantryApplicationTests" time="0.682"/>
-  <system-out><![CDATA[11:44:28.515 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [de.pettypantry.PettypantryApplicationTests]: PettypantryApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-11:44:28.593 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration de.pettypantry.PettypantryApplication for test class de.pettypantry.PettypantryApplicationTests
+  <testcase name="contextLoads()" classname="de.pettypantry.PettypantryApplicationTests" time="0.722"/>
+  <system-out><![CDATA[22:26:47.693 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [de.pettypantry.PettypantryApplicationTests]: PettypantryApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:26:47.766 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration de.pettypantry.PettypantryApplication for test class de.pettypantry.PettypantryApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,9 +13,9 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::             (v3.2.0-M3)
 
-2023-10-16T11:44:28.881+02:00  INFO 5431 --- [    Test worker] d.p.PettypantryApplicationTests          : Starting PettypantryApplicationTests using Java 21 with PID 5431 (started by arno in /Users/arno/Desktop/HTW/Semester_03/Prog/PettyPantry_BE)
-2023-10-16T11:44:28.882+02:00  INFO 5431 --- [    Test worker] d.p.PettypantryApplicationTests          : No active profile set, falling back to 1 default profile: "default"
-2023-10-16T11:44:29.683+02:00  INFO 5431 --- [    Test worker] d.p.PettypantryApplicationTests          : Started PettypantryApplicationTests in 0.982 seconds (process running for 1.838)
+2023-10-19T22:26:48.037+02:00  INFO 25249 --- [    Test worker] d.p.PettypantryApplicationTests          : Starting PettypantryApplicationTests using Java 21 with PID 25249 (started by arno in /Users/arno/Desktop/HTW/Semester_03/Prog/PettyPantry_BE)
+2023-10-19T22:26:48.038+02:00  INFO 25249 --- [    Test worker] d.p.PettypantryApplicationTests          : No active profile set, falling back to 1 default profile: "default"
+2023-10-19T22:26:49.058+02:00  INFO 25249 --- [    Test worker] d.p.PettypantryApplicationTests          : Started PettypantryApplicationTests in 1.176 seconds (process running for 2.032)
 ]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/arno/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.8/ae6ebe485f3bcd0a1e20241488a32e6400a501ef/byte-buddy-agent-1.14.8.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning

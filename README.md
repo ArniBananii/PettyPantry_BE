@@ -2,6 +2,6 @@
 
 # It should not be used for any commercial or production purposes.
 
-# For more information, please refer to the project's README file.
+# The Idea of this Application is to provide a service which people can use to get reminded of nearing the epxeration date of there produce they have inside there fridge .
 
 # OWNERS: Arno Heitmann, Sidar Dali

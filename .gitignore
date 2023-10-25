@@ -1,6 +1,6 @@
 # Files to ignore when pushed to git
-.env
 .idea
 .gradle
 .build.gradle
 .build
+docker-compose.yaml

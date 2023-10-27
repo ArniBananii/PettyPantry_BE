@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 //Could have generated value for personId but will do in controller for now!
+// this is a test to show the class how commits work!
+
 @Entity(name = "persons")
 public class PersonsEntity {
     @Id

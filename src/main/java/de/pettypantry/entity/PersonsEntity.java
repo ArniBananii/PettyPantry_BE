@@ -1,21 +1,25 @@
 package de.pettypantry.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 //Could have generated value for personId but will do in controller for now!
 @Entity(name = "persons")
 public class PersonsEntity {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "personid")
     private int personId;
+
     @Column(name = "firstname")
     private String firstName;
+
     @Column(name = "lastname")
     private String lastName;
+
     @Column(name = "address")
     private String address;
+
     @Column(name = "city")
     private String city;
 

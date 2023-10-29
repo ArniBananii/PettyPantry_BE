@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 public class PersonsEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "personid")
     private int personId;
 

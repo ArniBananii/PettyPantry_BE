@@ -1,45 +1,17 @@
-package de.pettypantry.entity;
+package de.pettypantry.web.api;
 
-import jakarta.persistence.*;
+public class PersonCreateRequest {
 
-//Could have generated value for personId but will do in controller for now!
-// this is a test to show the class how commits work!
-
-@Entity(name = "persons")
-public class PersonsEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int personId;
-
-    @Column(name = "firstname", nullable = false)
     private String firstName;
-
-    @Column(name = "lastname", nullable = false)
     private String lastName;
-
-    @Column(name = "address")
     private String address;
-
-    @Column(name = "city")
     private String city;
 
-    public PersonsEntity(String firstName, String lastName, String address, String city) {
+    public PersonCreateRequest(String firstName, String lastName, String address, String city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.city = city;
-    }
-
-    protected PersonsEntity() {
-    }
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
     }
 
     public String getFirstName() {

@@ -1,10 +1,8 @@
 package de.pettypantry.web;
 
-import de.pettypantry.entity.PersonsReposetory;
 import de.pettypantry.service.PersonsService;
 import de.pettypantry.web.api.PersonCreateRequest;
 import de.pettypantry.web.api.Persons;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,18 +12,13 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-public class HelloWorldController {
+public class PantryController {
 
 
 private final PersonsService personsService;
 
-    public HelloWorldController(PersonsService personsService) {
+    public PantryController(PersonsService personsService) {
         this.personsService = personsService;
-    }
-
-    @GetMapping("/")
-    public ModelAndView helloWorld() {
-        return new ModelAndView("helloWorld");
     }
 
     @GetMapping(path = "/api/v1/persons")

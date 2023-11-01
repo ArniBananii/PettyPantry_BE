@@ -1,11 +1,10 @@
 package de.pettypantry.web;
 
 import de.pettypantry.service.PersonsService;
-import de.pettypantry.web.api.PersonCreateRequest;
+import de.pettypantry.web.models.PersonModel;
 import de.pettypantry.web.api.Persons;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -27,7 +26,7 @@ private final PersonsService personsService;
     }
 
     @PostMapping(path = "/api/v1/persons")
-    public ResponseEntity<Void> createPerson(@RequestBody PersonCreateRequest request) throws URISyntaxException {
+    public ResponseEntity<Void> createPerson(@RequestBody PersonModel request) throws URISyntaxException {
         var person = personsService.create(request);
         URI uri = new URI("/api/v1/persons/" + person.getPersonId());
         return ResponseEntity.created(uri).build();

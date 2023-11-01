@@ -2,7 +2,7 @@ package de.pettypantry.service;
 
 import de.pettypantry.entity.PersonsEntity;
 import de.pettypantry.entity.PersonsReposetory;
-import de.pettypantry.web.api.PersonCreateRequest;
+import de.pettypantry.web.models.PersonModel;
 import de.pettypantry.web.api.Persons;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class PersonsService {
         return personsList;
     }
 
-    public Persons create(PersonCreateRequest request) {
+    public Persons create(PersonModel request) {
         var personEntity = new PersonsEntity(request.getFirstName(), request.getLastName(), request.getAddress(), request.getCity());
         personEntity = personsReposetory.save(personEntity);
         return transformEntity(personEntity);

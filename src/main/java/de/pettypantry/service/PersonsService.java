@@ -27,6 +27,11 @@ public class PersonsService {
         return personsList;
     }
 
+    public Persons findByID(int id) {
+        var personEntity = personsReposetory.findById(id);
+        return personEntity.map(this::transformEntity).orElse(null);
+    }
+
     public Persons create(PersonModel request) {
         var personEntity = new PersonsEntity(request.getFirstName(), request.getLastName(), request.getAddress(), request.getCity());
         personEntity = personsReposetory.save(personEntity);

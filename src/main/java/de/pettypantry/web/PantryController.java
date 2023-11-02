@@ -25,6 +25,12 @@ private final PersonsService personsService;
         return ResponseEntity.status(201).body(personsService.findAll());
     }
 
+    @GetMapping(path = "/api/v1/persons/{personID}")
+    public ResponseEntity<Persons> fetchPersonById(@PathVariable int personID) {
+        var person = personsService.findByID(personID);
+        return person != null ? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
+    }
+
     @PostMapping(path = "/api/v1/persons")
     public ResponseEntity<Void> createPerson(@RequestBody PersonModel request) throws URISyntaxException {
         var person = personsService.create(request);

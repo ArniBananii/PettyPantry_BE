@@ -38,10 +38,6 @@ public class PersonsEntity {
         return personId;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
-
     public String getFirstName() {
         return firstName;
     }

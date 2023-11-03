@@ -38,6 +38,20 @@ public class PersonsService {
         return transformEntity(personEntity);
     }
 
+    public Persons update(int id, PersonModel model) {
+        var personsEntityOptional = personsReposetory.findById(id);
+        if (personsEntityOptional.isEmpty()) {
+            return null;
+        }
+        var personsEntity = personsEntityOptional.get();
+        personsEntity.setFirstName(model.getFirstName());
+        personsEntity.setLastName(model.getLastName());
+        personsEntity.setAddress(model.getAddress());
+        personsEntity.setCity(model.getCity());
+        personsEntity = personsReposetory.save(personsEntity);
+        return transformEntity(personsEntity);
+    }
+
     private Persons transformEntity(PersonsEntity personsEntity) {
         return new Persons(personsEntity.getPersonId(),
                 personsEntity.getFirstName(),

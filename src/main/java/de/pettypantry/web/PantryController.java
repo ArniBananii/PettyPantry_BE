@@ -37,5 +37,11 @@ private final PersonsService personsService;
         URI uri = new URI("/api/v1/persons/" + person.getPersonId());
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping(path = "/api/v1/persons/{id}")
+    public ResponseEntity<Persons> updatePerson(@PathVariable int id, @RequestBody PersonModel request) {
+        var person = personsService.update(id, request);
+        return person != null ? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
+    }
 }
 

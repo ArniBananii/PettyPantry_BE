@@ -52,6 +52,14 @@ public class PersonsService {
         return transformEntity(personsEntity);
     }
 
+    public boolean deleteById(int id) {
+        if(!personsReposetory.existsById(id)) {
+            return false;
+        }
+        personsReposetory.deleteById(id);
+        return true;
+    }
+
     private Persons transformEntity(PersonsEntity personsEntity) {
         return new Persons(personsEntity.getPersonId(),
                 personsEntity.getFirstName(),

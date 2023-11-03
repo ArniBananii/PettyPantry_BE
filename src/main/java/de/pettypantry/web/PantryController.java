@@ -43,5 +43,11 @@ private final PersonsService personsService;
         var person = personsService.update(id, request);
         return person != null ? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping(path = "/api/v1/persons/{id}")
+    public ResponseEntity<Void> deletePerson(@PathVariable int id) {
+        boolean successful = personsService.deleteById(id);
+        return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
 }
 

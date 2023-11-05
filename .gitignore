@@ -4,3 +4,6 @@
 .build.gradle
 .build
 docker-compose.yaml
+.classpath
+**/.build
+build

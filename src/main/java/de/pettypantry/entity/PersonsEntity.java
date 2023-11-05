@@ -9,13 +9,13 @@ import jakarta.persistence.*;
 public class PersonsEntity {
 
     @Id
-    @Column(name = "personid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int personId;
 
-    @Column(name = "firstname")
+    @Column(name = "firstname", nullable = false)
     private String firstName;
 
-    @Column(name = "lastname")
+    @Column(name = "lastname", nullable = false)
     private String lastName;
 
     @Column(name = "address")
@@ -24,8 +24,7 @@ public class PersonsEntity {
     @Column(name = "city")
     private String city;
 
-    public PersonsEntity(int personId, String firstName, String lastName, String address, String city) {
-        this.personId = personId;
+    public PersonsEntity(String firstName, String lastName, String address, String city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -37,10 +36,6 @@ public class PersonsEntity {
 
     public int getPersonId() {
         return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
     }
 
     public String getFirstName() {

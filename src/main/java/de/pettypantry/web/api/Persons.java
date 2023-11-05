@@ -16,10 +16,6 @@ public class Persons {
         this.city = city;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

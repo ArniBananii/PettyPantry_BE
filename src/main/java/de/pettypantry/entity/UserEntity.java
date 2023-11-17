@@ -3,8 +3,7 @@ package de.pettypantry.entity;
 import jakarta.persistence.*;
 
 //Could have generated value for personId but will do in controller for now!
-// this is a test to show the class how commits work!
-
+@Table(name = "users")
 @Entity(name = "user")
 public class UserEntity {
 

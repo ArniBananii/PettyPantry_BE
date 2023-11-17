@@ -3,7 +3,7 @@ package de.pettypantry.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-
+@Table(name = "ingredient")
 @Entity(name = "ingredient")
 public class IngredientEntity {
     @Id

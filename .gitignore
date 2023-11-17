@@ -1,9 +1,14 @@
 # Files to ignore when pushed to git
+/build
 .idea
+.vscode
 .gradle
 .build.gradle
 .build
 docker-compose.yaml
 .classpath
 **/.build
-build
+bin/
+**/Libs/
+Report/
+.cache/

@@ -1,8 +1,8 @@
 package de.pettypantry.web;
 
-import de.pettypantry.service.PersonsService;
-import de.pettypantry.web.models.PersonModel;
-import de.pettypantry.web.api.Persons;
+import de.pettypantry.service.UserService;
+import de.pettypantry.web.models.UserModel;
+import de.pettypantry.web.api.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,39 +14,39 @@ import java.util.List;
 public class PantryController {
 
 
-private final PersonsService personsService;
+private final UserService userService;
 
-    public PantryController(PersonsService personsService) {
-        this.personsService = personsService;
+    public PantryController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping(path = "/api/v1/persons")
-    public ResponseEntity<List<Persons>> fetchPersons(){
-        return ResponseEntity.status(201).body(personsService.findAll());
+    @GetMapping(path = "/api/v1/users")
+    public ResponseEntity<List<User>> fetchUsers(){
+        return ResponseEntity.status(201).body(userService.findAll());
     }
 
-    @GetMapping(path = "/api/v1/persons/{personID}")
-    public ResponseEntity<Persons> fetchPersonById(@PathVariable int personID) {
-        var person = personsService.findByID(personID);
-        return person != null ? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
+    @GetMapping(path = "/api/v1/users/{userID}")
+    public ResponseEntity<User> fetchUserById(@PathVariable int userID) {
+        var user = userService.findByID(userID);
+        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(path = "/api/v1/persons")
-    public ResponseEntity<Void> createPerson(@RequestBody PersonModel request) throws URISyntaxException {
-        var person = personsService.create(request);
-        URI uri = new URI("/api/v1/persons/" + person.getPersonId());
+    @PostMapping(path = "/api/v1/users")
+    public ResponseEntity<Void> createUser(@RequestBody UserModel request) throws URISyntaxException {
+        var user = userService.create(request);
+        URI uri = new URI("/api/v1/users/" + user.getUserid());
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping(path = "/api/v1/persons/{id}")
-    public ResponseEntity<Persons> updatePerson(@PathVariable int id, @RequestBody PersonModel request) {
-        var person = personsService.update(id, request);
-        return person != null ? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
+    @PutMapping(path = "/api/v1/users/{userID}")
+    public ResponseEntity<User> updateUser(@PathVariable int userID, @RequestBody UserModel request) {
+        var user = userService.update(userID, request);
+        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping(path = "/api/v1/persons/{id}")
-    public ResponseEntity<Void> deletePerson(@PathVariable int id) {
-        boolean successful = personsService.deleteById(id);
+    @DeleteMapping(path = "/api/v1/users/{userID}")
+    public ResponseEntity<Void> deleteUser(@PathVariable int userID) {
+        boolean successful = userService.deleteById(userID);
         return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

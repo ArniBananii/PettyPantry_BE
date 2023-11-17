@@ -5,12 +5,12 @@ import jakarta.persistence.*;
 //Could have generated value for personId but will do in controller for now!
 // this is a test to show the class how commits work!
 
-@Entity(name = "persons")
-public class PersonsEntity {
+@Entity(name = "user")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int personId;
+    private int userid;
 
     @Column(name = "firstname", nullable = false)
     private String firstName;
@@ -18,24 +18,16 @@ public class PersonsEntity {
     @Column(name = "lastname", nullable = false)
     private String lastName;
 
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "city")
-    private String city;
-
-    public PersonsEntity(String firstName, String lastName, String address, String city) {
+    public UserEntity(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
-        this.city = city;
     }
 
-    protected PersonsEntity() {
+    protected UserEntity() {
     }
 
-    public int getPersonId() {
-        return personId;
+    public int getUserid() {
+        return userid;
     }
 
     public String getFirstName() {
@@ -52,21 +44,5 @@ public class PersonsEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 }

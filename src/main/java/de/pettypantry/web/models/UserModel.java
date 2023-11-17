@@ -2,7 +2,7 @@ package de.pettypantry.web.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PersonModel {
+public class UserModel {
 
     @JsonProperty("firstName")
     private String firstName;
@@ -10,20 +10,12 @@ public class PersonModel {
     @JsonProperty("lastName")
     private String lastName;
 
-    @JsonProperty("address")
-    private String address;
-
-    @JsonProperty("city")
-    private String city;
-
-    public PersonModel() {
+    public UserModel() {
     }
 
-    public PersonModel(String firstName, String lastName, String address, String city) {
+    public UserModel(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
-        this.city = city;
     }
 
     public String getFirstName() {
@@ -40,21 +32,5 @@ public class PersonModel {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 }

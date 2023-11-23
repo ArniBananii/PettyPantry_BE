@@ -59,7 +59,7 @@ public class UserService {
     }
 
     private User transformEntity(UserEntity userEntity) {
-        return new User(userEntity.getUserid(),
+        return new User(userEntity.getUserId(),
                 userEntity.getFirstName(),
                 userEntity.getLastName()
         );

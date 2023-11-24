@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Table(name = "ingredient")
-@Entity(name = "ingredient")
+@Table(name = "INGREDIENT")
+@Entity(name = "INGREDIENT")
 public class IngredientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +23,8 @@ public class IngredientEntity {
         this.validNoOfDays = validNoOfDays;
     }
 
-    @ManyToMany(mappedBy = "ingredients", fetch = FetchType.LAZY)
-    private Set<UserEntity> users;
+    @OneToMany(mappedBy = "ingredient")
+    private Set<Pantry> ingredientPantries;
 
     protected IngredientEntity() {
     }

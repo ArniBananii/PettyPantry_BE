@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 //Could have generated value for personId but will do in controller for now!
-@Table(name = "users")
-@Entity(name = "user")
+@Table(name = "PANTRYUSER")
+@Entity(name = "USER")
 public class UserEntity {
 
     @Id
@@ -19,15 +19,8 @@ public class UserEntity {
     @Column(name = "lastname", nullable = false)
     private String lastName;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "PANTRY",
-    joinColumns = {
-            @JoinColumn(name = "user_id", referencedColumnName = "userId")
-    },
-    inverseJoinColumns = {
-            @JoinColumn(name = "ingredient_id", referencedColumnName = "ingredientId")
-    })
-    private Set<IngredientEntity> ingredients;
+    @OneToMany(mappedBy = "user")
+    private Set<Pantry> userPantries;
 
     public UserEntity(String firstName, String lastName) {
         this.firstName = firstName;

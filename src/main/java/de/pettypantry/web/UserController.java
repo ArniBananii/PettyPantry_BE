@@ -11,12 +11,12 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-public class PantryController {
+public class UserController {
 
 
 private final UserService userService;
 
-    public PantryController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

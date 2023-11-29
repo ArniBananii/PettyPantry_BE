@@ -19,8 +19,9 @@ public class UserEntity {
     @Column(name = "lastname", nullable = false)
     private String lastName;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Pantry> userPantries;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pantryid", referencedColumnName = "pantryId")
+    private Pantry userPantry;
 
     public UserEntity(String firstName, String lastName) {
         this.firstName = firstName;

@@ -4,21 +4,22 @@ import de.pettypantry.web.api.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity(name = "PANTRY")
 @Table(name = "PANTRY")
 public class Pantry {
 
-    @EmbeddedId
-    private PantryId pantryId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int pantryId;
 
-    @ManyToOne
-    @MapsId("userId")
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @OneToOne
+    @JoinColumn(name = "userid", referencedColumnName = "userId", nullable = false)
+    private UserEntity ownerUser;
 
-    @ManyToOne
-    @MapsId("ingredientId")
-    @JoinColumn(name = "ingredient_id")
-    IngredientEntity ingredient;
+    @OneToMany(mappedBy = "pantry")
+    private Set<UniqueIngredientEntity> ingredients;
 }

@@ -8,6 +8,7 @@ import java.util.Set;
 @Table(name = "INGREDIENT")
 @Entity(name = "INGREDIENT")
 public class IngredientEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ingredientId;
@@ -18,13 +19,13 @@ public class IngredientEntity {
     @Column(name = "validNoOfDays")
     private int validNoOfDays;
 
+    @OneToMany(mappedBy = "ingredient")
+    private Set<UniqueIngredientEntity> uniqueIngredients;
+
     public IngredientEntity(String ingredientName, int validNoOfDays) {
         this.ingredientName = ingredientName;
         this.validNoOfDays = validNoOfDays;
     }
-
-    @OneToMany(mappedBy = "ingredient")
-    private Set<Pantry> ingredientPantries;
 
     protected IngredientEntity() {
     }

@@ -23,6 +23,9 @@ public class PantryEntity {
         this.ownerUser = ownerUser;
     }
 
+    protected PantryEntity() {
+    }
+
     public int getPantryId() {
         return pantryId;
     }

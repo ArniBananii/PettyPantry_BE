@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PantryService {
 
@@ -18,6 +21,13 @@ public class PantryService {
 
     public PantryService(PantryRepository pantryRepository) {
         this.pantryRepository = pantryRepository;
+    }
+
+    public List<Pantry> findAll() {
+        List<PantryEntity> pantries = pantryRepository.findAll();
+        List<Pantry> pantryList = pantries.stream().map(this::transformEntity).toList();
+        logger.info("Pantries found: " + pantryList.size());
+        return pantryList;
     }
 
     public Pantry create(UserEntity user) {

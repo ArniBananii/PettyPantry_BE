@@ -32,6 +32,11 @@ public class UserService {
         return userEntity.map(this::transformEntity).orElse(null);
     }
 
+    public UserEntity findUserEntityByID(int id) {
+        var userEntityOptional = userRepository.findById(id);
+        return userEntityOptional.orElse(null);
+    }
+
     public User create(UserModel request) {
         var userEntity = new UserEntity(request.getFirstName(), request.getLastName());
         userEntity = userRepository.save(userEntity);

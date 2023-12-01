@@ -2,8 +2,6 @@ package de.pettypantry.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 //Could have generated value for personId but will do in controller for now!
 @Table(name = "PANTRYUSER")
 @Entity(name = "USER")
@@ -21,7 +19,7 @@ public class UserEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pantryid", referencedColumnName = "pantryId")
-    private Pantry userPantry;
+    private PantryEntity userPantry;
 
     public UserEntity(String firstName, String lastName) {
         this.firstName = firstName;

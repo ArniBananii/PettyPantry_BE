@@ -1,5 +1,6 @@
 package de.pettypantry.web;
 
+import de.pettypantry.service.PantryService;
 import de.pettypantry.service.UserService;
 import de.pettypantry.web.models.UserModel;
 import de.pettypantry.web.api.User;
@@ -15,9 +16,11 @@ public class UserController {
 
 
 private final UserService userService;
+private final PantryService pantryService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PantryService pantryService) {
         this.userService = userService;
+        this.pantryService = pantryService;
     }
 
     @GetMapping(path = "/api/v1/users")
@@ -38,14 +41,16 @@ private final UserService userService;
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping(path = "/api/v1/users/{userID}")
+    @PutMapping(path = "/api/v1/user/{userID}")
     public ResponseEntity<User> updateUser(@PathVariable int userID, @RequestBody UserModel request) {
         var user = userService.update(userID, request);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping(path = "/api/v1/users/{userID}")
+    @DeleteMapping(path = "/api/v1/user/{userID}")
     public ResponseEntity<Void> deleteUser(@PathVariable int userID) {
+        var user = userService.findUserEntityByID(userID);
+        pantryService.deleteById(user.getUserPantry().getPantryId());
         boolean successful = userService.deleteById(userID);
         return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }

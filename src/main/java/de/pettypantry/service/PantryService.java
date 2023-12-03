@@ -30,6 +30,10 @@ public class PantryService {
         return pantryList;
     }
 
+    public void deleteById(int id) {
+        pantryRepository.deleteById(id);
+    }
+
     public Pantry findById(int id) {
         var PantryEntity = pantryRepository.findById(id);
         return PantryEntity.map(this::transformEntity).orElse(null);

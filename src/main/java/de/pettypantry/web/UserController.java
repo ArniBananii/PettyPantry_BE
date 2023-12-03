@@ -50,7 +50,9 @@ private final PantryService pantryService;
     @DeleteMapping(path = "/api/v1/user/{userID}")
     public ResponseEntity<Void> deleteUser(@PathVariable int userID) {
         var user = userService.findUserEntityByID(userID);
-        pantryService.deleteById(user.getUserPantry().getPantryId());
+        if (user.getUserPantry() != null) {
+            pantryService.deleteById(user.getUserPantry().getPantryId());
+        }
         boolean successful = userService.deleteById(userID);
         return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }

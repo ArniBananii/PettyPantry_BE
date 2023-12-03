@@ -25,16 +25,16 @@ private final UserService userService;
         return ResponseEntity.status(201).body(userService.findAll());
     }
 
-    @GetMapping(path = "/api/v1/users/{userID}")
+    @GetMapping(path = "/api/v1/user/{userID}")
     public ResponseEntity<User> fetchUserById(@PathVariable int userID) {
         var user = userService.findByID(userID);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping(path = "/api/v1/users")
+    @PostMapping(path = "/api/v1/user")
     public ResponseEntity<Void> createUser(@RequestBody UserModel request) throws URISyntaxException {
         var user = userService.create(request);
-        URI uri = new URI("/api/v1/users/" + user.getUserid());
+        URI uri = new URI("/api/v1/user/" + user.getUserid());
         return ResponseEntity.created(uri).build();
     }
 

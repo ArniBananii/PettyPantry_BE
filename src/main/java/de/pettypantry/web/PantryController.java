@@ -6,10 +6,7 @@ import de.pettypantry.service.UserService;
 import de.pettypantry.web.api.Pantry;
 import de.pettypantry.web.models.PantryModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -31,6 +28,13 @@ public class PantryController {
         return ResponseEntity.status(201).body(pantryService.findAll());
     }
 
+    @GetMapping(path = "/api/v1/pantry/{userid}")
+    public ResponseEntity<Pantry> fetchPantryByUserId(@PathVariable int userid) {
+        var user = userService.findUserEntityByID(userid);
+        var pantry = pantryService.findById(user.getUserPantry().getPantryId());
+        return pantry != null ? ResponseEntity.ok(pantry) : ResponseEntity.notFound().build();
+    }
+
     @PostMapping(path = "/api/v1/pantry")
     public ResponseEntity<Void> createPantry(@RequestBody PantryModel request) throws URISyntaxException {
         var user = userService.findUserEntityByID(request.getUserid());
@@ -38,4 +42,6 @@ public class PantryController {
         URI uri = new URI("/api/v1/pantry/" + pantry.getPantryid());
         return ResponseEntity.created(uri).build();
     }
+
+
 }

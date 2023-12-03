@@ -30,6 +30,20 @@ public class PantryService {
         return pantryList;
     }
 
+    public Pantry findById(int id) {
+        var PantryEntity = pantryRepository.findById(id);
+        return PantryEntity.map(this::transformEntity).orElse(null);
+    }
+
+    public void save(PantryEntity pantry) {
+        pantryRepository.save(pantry);
+    }
+
+    public PantryEntity findPantryEntityByID(int id) {
+        var pantryEntityOptional = pantryRepository.findById(id);
+        return pantryEntityOptional.orElse(null);
+    }
+
     public Pantry create(UserEntity user) {
         var pantryEntity = new PantryEntity(user);
         pantryEntity = pantryRepository.save(pantryEntity);

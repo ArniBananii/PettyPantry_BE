@@ -17,8 +17,7 @@ public class UserEntity {
     @Column(name = "lastname", nullable = false)
     private String lastName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pantryid", referencedColumnName = "pantryId")
+    @OneToOne(mappedBy = "ownerUser")
     private PantryEntity userPantry;
 
     public UserEntity(String firstName, String lastName) {
@@ -47,5 +46,9 @@ public class UserEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public PantryEntity getUserPantry() {
+        return userPantry;
     }
 }

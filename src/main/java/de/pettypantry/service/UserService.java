@@ -27,6 +27,10 @@ public class UserService {
         return userList;
     }
 
+    public void save(UserEntity user) {
+        userRepository.save(user);
+    }
+
     public User findByID(int id) {
         var userEntity = userRepository.findById(id);
         return userEntity.map(this::transformEntity).orElse(null);

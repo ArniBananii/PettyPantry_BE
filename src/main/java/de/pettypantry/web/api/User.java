@@ -5,8 +5,8 @@ public class User {
     private String firstName;
     private String lastName;
 
-    public User(int personId, String firstName, String lastName) {
-        this.userid = personId;
+    public User(int userid, String firstName, String lastName) {
+        this.userid = userid;
         this.firstName = firstName;
         this.lastName = lastName;
     }

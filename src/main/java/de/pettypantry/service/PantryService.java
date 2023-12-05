@@ -51,8 +51,7 @@ public class PantryService {
     public Pantry create(UserEntity user) {
         var pantryEntity = new PantryEntity(user);
         pantryEntity = pantryRepository.save(pantryEntity);
-        var pantry = transformEntity(pantryEntity);
-        return pantry;
+        return transformEntity(pantryEntity);
 
     }
 

@@ -1,7 +1,10 @@
 package de.pettypantry.web;
 
+import de.pettypantry.entity.UniqueIngredientEntity;
 import de.pettypantry.service.PantryService;
+import de.pettypantry.service.UniqueIngredientService;
 import de.pettypantry.service.UserService;
+import de.pettypantry.web.api.UniqueIngredient;
 import de.pettypantry.web.models.UserModel;
 import de.pettypantry.web.api.User;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class UserController {
@@ -17,10 +21,12 @@ public class UserController {
 
 private final UserService userService;
 private final PantryService pantryService;
+private final UniqueIngredientService uniqueIngredientService;
 
-    public UserController(UserService userService, PantryService pantryService) {
+    public UserController(UserService userService, PantryService pantryService, UniqueIngredientService uniqueIngredientService) {
         this.userService = userService;
         this.pantryService = pantryService;
+        this.uniqueIngredientService = uniqueIngredientService;
     }
 
     @GetMapping(path = "/api/v1/users")
@@ -51,6 +57,10 @@ private final PantryService pantryService;
     public ResponseEntity<Void> deleteUser(@PathVariable int userID) {
         var user = userService.findUserEntityByID(userID);
         if (user.getUserPantry() != null) {
+            Set<UniqueIngredientEntity> uniqueList = user.getUserPantry().getIngredients();
+            for (UniqueIngredientEntity value : uniqueList) {
+                uniqueIngredientService.deleteById(value.getUniqueIngredientId());
+            }
             pantryService.deleteById(user.getUserPantry().getPantryId());
         }
         boolean successful = userService.deleteById(userID);

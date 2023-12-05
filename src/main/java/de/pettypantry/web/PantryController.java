@@ -42,6 +42,4 @@ public class PantryController {
         URI uri = new URI("/api/v1/pantry/" + pantry.getPantryid());
         return ResponseEntity.created(uri).build();
     }
-
-
 }

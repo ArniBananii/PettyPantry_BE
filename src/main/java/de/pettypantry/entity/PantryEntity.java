@@ -2,6 +2,7 @@ package de.pettypantry.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "PANTRY")
@@ -16,7 +17,7 @@ public class PantryEntity {
     @JoinColumn(name = "userid", referencedColumnName = "userId", nullable = false)
     private UserEntity ownerUser;
 
-    @OneToMany(mappedBy = "pantry")
+    @OneToMany(mappedBy = "pantry", fetch = FetchType.EAGER)
     private Set<UniqueIngredientEntity> ingredients;
 
     public PantryEntity(UserEntity ownerUser) {

@@ -34,6 +34,11 @@ public class IngredientService {
         return ingredientEntity.map(this::transformEntity).orElse(null);
     }
 
+    public IngredientEntity findIngredientEntityById(int ingredientId) {
+        var ingredientEntityOptional = ingredientRepository.findById(ingredientId);
+        return ingredientEntityOptional.orElse(null);
+    }
+
     public Ingredient create(IngredientModel request) {
         var ingredientEntity = new IngredientEntity(request.getIngredientName(), request.getValidNoOfDays());
         ingredientEntity = ingredientRepository.save(ingredientEntity);

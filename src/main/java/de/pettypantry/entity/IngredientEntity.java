@@ -3,6 +3,7 @@ package de.pettypantry.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Table(name = "INGREDIENT")
@@ -10,7 +11,6 @@ import java.util.Set;
 public class IngredientEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ingredientId;
 
     @Column(name = "name", nullable = false)
@@ -19,7 +19,7 @@ public class IngredientEntity {
     @Column(name = "validNoOfDays")
     private int validNoOfDays;
 
-    @OneToMany(mappedBy = "ingredient")
+    @OneToMany(mappedBy = "ingredient", fetch = FetchType.EAGER)
     private Set<UniqueIngredientEntity> uniqueIngredients;
 
     public IngredientEntity(String ingredientName, int validNoOfDays) {
@@ -48,5 +48,9 @@ public class IngredientEntity {
 
     public void setValidNoOfDays(int validNoOfDays) {
         this.validNoOfDays = validNoOfDays;
+    }
+
+    public Set<UniqueIngredientEntity> getUniqueIngredients() {
+        return uniqueIngredients;
     }
 }

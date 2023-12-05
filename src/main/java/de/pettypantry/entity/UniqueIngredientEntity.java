@@ -22,4 +22,33 @@ public class UniqueIngredientEntity {
 
     @Column(name = "expDate", nullable = false)
     private LocalDate expirationDate;
+
+    public UniqueIngredientEntity(PantryEntity pantry, IngredientEntity ingredient, LocalDate expirationDate) {
+        this.pantry = pantry;
+        this.ingredient = ingredient;
+        this.expirationDate = expirationDate;
+    }
+
+    protected UniqueIngredientEntity() {
+    }
+
+    public int getUniqueIngredientId() {
+        return uniqueIngredientId;
+    }
+
+    public PantryEntity getPantry() {
+        return pantry;
+    }
+
+    public IngredientEntity getIngredient() {
+        return ingredient;
+    }
+
+    public LocalDate getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(LocalDate expirationDate) {
+        this.expirationDate = expirationDate;
+    }
 }

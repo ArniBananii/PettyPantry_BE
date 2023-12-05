@@ -22,15 +22,7 @@ public class IngredientModel {
         return ingredientName;
     }
 
-    public void setIngredientName(String ingredientName) {
-        this.ingredientName = ingredientName;
-    }
-
     public int getValidNoOfDays() {
         return validNoOfDays;
-    }
-
-    public void setValidNoOfDays(int validNoOfDays) {
-        this.validNoOfDays = validNoOfDays;
     }
 }

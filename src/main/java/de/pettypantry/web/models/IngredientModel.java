@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class IngredientModel {
 
-    @JsonProperty("Name")
+    @JsonProperty("name")
     private String ingredientName;
 
     @JsonProperty("validDays")

@@ -15,15 +15,7 @@ public class Pantry {
         return pantryid;
     }
 
-    public void setPantryid(int pantryid) {
-        this.pantryid = pantryid;
-    }
-
     public int getUserid() {
         return userid;
-    }
-
-    public void setUserid(int userid) {
-        this.userid = userid;
     }
 }

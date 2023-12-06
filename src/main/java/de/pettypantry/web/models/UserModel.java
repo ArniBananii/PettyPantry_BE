@@ -4,25 +4,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserModel {
 
-    @JsonProperty("firstName")
-    private String firstName;
+    @JsonProperty("userName")
+    private String userName;
 
-    @JsonProperty("lastName")
-    private String lastName;
+    @JsonProperty("password")
+    private String password;
 
     public UserModel() {
     }
 
-    public UserModel(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public UserModel(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return password;
     }
 }

@@ -1,5 +1,6 @@
 package de.pettypantry.web;
 
+import de.pettypantry.entity.PantryEntity;
 import de.pettypantry.entity.UniqueIngredientEntity;
 import de.pettypantry.service.PantryService;
 import de.pettypantry.service.UniqueIngredientService;
@@ -56,14 +57,20 @@ private final UniqueIngredientService uniqueIngredientService;
     @DeleteMapping(path = "/api/v1/user/{userID}")
     public ResponseEntity<Void> deleteUser(@PathVariable int userID) {
         var user = userService.findUserEntityByID(userID);
-        if (user.getUserPantry() != null) {
-            Set<UniqueIngredientEntity> uniqueList = user.getUserPantry().getIngredients();
-            for (UniqueIngredientEntity value : uniqueList) {
-                uniqueIngredientService.deleteById(value.getUniqueIngredientId());
+        boolean successful = false;
+        if (user.getUserPantry() == null) {
+            successful = userService.deleteById(userID);
+        } else {
+            PantryEntity pantry = user.getUserPantry();
+            Set<UniqueIngredientEntity> uniqueIngredientEntities = pantry.getIngredients();
+            if (!uniqueIngredientEntities.isEmpty()) {
+                for (UniqueIngredientEntity value : uniqueIngredientEntities) {
+                    uniqueIngredientService.deleteById(value.getUniqueIngredientId());
+                }
             }
-            pantryService.deleteById(user.getUserPantry().getPantryId());
+            pantryService.deleteById(pantry.getPantryId());
         }
-        boolean successful = userService.deleteById(userID);
+        successful = userService.deleteById(userID);
         return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

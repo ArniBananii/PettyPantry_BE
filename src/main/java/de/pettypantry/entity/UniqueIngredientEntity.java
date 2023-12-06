@@ -16,7 +16,7 @@ public class UniqueIngredientEntity {
     @JoinColumn(name = "pantryid", referencedColumnName = "pantryId")
     private PantryEntity pantry;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ingredientid", referencedColumnName = "ingredientId")
     private IngredientEntity ingredient;
 

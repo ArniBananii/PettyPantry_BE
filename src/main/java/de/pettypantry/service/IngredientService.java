@@ -57,14 +57,6 @@ public class IngredientService {
         return transformEntity(ingredientEntity);
     }
 
-    public boolean deleteById(int ingredientId) {
-        if(!ingredientRepository.existsById(ingredientId)) {
-            return false;
-        }
-        ingredientRepository.deleteById(ingredientId);
-        return true;
-    }
-
     public Ingredient transformEntity(IngredientEntity ingredientEntity) {
         return new Ingredient(ingredientEntity.getIngredientId(),
                 ingredientEntity.getIngredientName(),

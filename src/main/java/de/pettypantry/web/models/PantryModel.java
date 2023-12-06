@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PantryModel {
 
-    @JsonProperty(namespace = "userid")
+    @JsonProperty("userID")
     private int userid;
 
     public PantryModel(int userid) {

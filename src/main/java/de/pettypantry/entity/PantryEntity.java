@@ -38,8 +38,4 @@ public class PantryEntity {
     public Set<UniqueIngredientEntity> getIngredients() {
         return ingredients;
     }
-
-    public void setIngredients(Set<UniqueIngredientEntity> ingredients) {
-        this.ingredients = ingredients;
-    }
 }

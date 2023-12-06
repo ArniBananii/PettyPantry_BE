@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public User create(UserModel request) {
-        var userEntity = new UserEntity(request.getFirstName(), request.getLastName());
+        var userEntity = new UserEntity(request.getUserName(), request.getPassword());
         userEntity = userRepository.save(userEntity);
         return transformEntity(userEntity);
     }
@@ -53,8 +53,8 @@ public class UserService {
             return null;
         }
         var userEntity = userEntityOptional.get();
-        userEntity.setFirstName(model.getFirstName());
-        userEntity.setLastName(model.getLastName());
+        userEntity.setUserName(model.getUserName());
+        userEntity.setLastName(model.getPassword());
         userEntity = userRepository.save(userEntity);
         return transformEntity(userEntity);
     }
@@ -69,7 +69,7 @@ public class UserService {
 
     private User transformEntity(UserEntity userEntity) {
         return new User(userEntity.getUserId(),
-                userEntity.getFirstName(),
+                userEntity.getUserName(),
                 userEntity.getLastName()
         );
     }

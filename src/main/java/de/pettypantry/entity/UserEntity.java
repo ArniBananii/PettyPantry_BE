@@ -11,18 +11,18 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
-    @Column(name = "firstname", nullable = false)
-    private String firstName;
+    @Column(name = "username", nullable = false)
+    private String userName;
 
-    @Column(name = "lastname", nullable = false)
-    private String lastName;
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @OneToOne(mappedBy = "ownerUser")
     private PantryEntity userPantry;
 
-    public UserEntity(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public UserEntity(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 
     protected UserEntity() {
@@ -32,20 +32,20 @@ public class UserEntity {
         return userId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUserName(String firstName) {
+        this.userName = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return password;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.password = lastName;
     }
 
     public PantryEntity getUserPantry() {

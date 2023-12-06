@@ -2,33 +2,24 @@ package de.pettypantry.web.api;
 
 public class User {
     private int userid;
-    private String firstName;
-    private String lastName;
+    private String userName;
+    private String password;
 
-    public User(int userid, String firstName, String lastName) {
+    public User(int userid, String userName, String password) {
         this.userid = userid;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
     }
 
     public int getUserid() {
         return userid;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return password;
     }
-
 }

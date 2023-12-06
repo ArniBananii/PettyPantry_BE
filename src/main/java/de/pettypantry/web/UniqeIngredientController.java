@@ -32,6 +32,12 @@ public class UniqeIngredientController {
         return ResponseEntity.status(201).body(uniqueIngredientService.findAll());
     }
 
+    @DeleteMapping(path = "/api/v1/unqingredient/{unqId}")
+    public ResponseEntity<Void> deleteUniqueIngredient(@PathVariable int unqId) {
+        boolean successful = uniqueIngredientService.deleteById(unqId);
+        return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
+
     @Transactional
     @PostMapping(path = "/api/v1/unqingredient")
     public ResponseEntity<Void> createUniqueIngredient(@RequestBody UniqueIngredientModel request) throws URISyntaxException {

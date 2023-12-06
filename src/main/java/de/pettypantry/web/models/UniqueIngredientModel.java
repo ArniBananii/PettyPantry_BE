@@ -6,10 +6,10 @@ import java.time.LocalDate;
 
 public class UniqueIngredientModel {
 
-    @JsonProperty("pantryid")
+    @JsonProperty("pantryID")
     private int pantryId;
 
-    @JsonProperty("ingredientid")
+    @JsonProperty("ingredientID")
     private int ingredientId;
 
     @JsonProperty("expirationDate")

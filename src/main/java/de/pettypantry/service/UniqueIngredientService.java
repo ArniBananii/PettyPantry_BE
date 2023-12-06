@@ -38,8 +38,12 @@ public class UniqueIngredientService {
         uniqueIngredientRepository.save(uniqueIngredientEntity);
     }
 
-    public void deleteById(int id) {
+    public boolean deleteById(int id) {
+        if (!uniqueIngredientRepository.existsById(id)) {
+            return false;
+        }
         uniqueIngredientRepository.deleteById(id);
+        return true;
     }
 
     public UniqueIngredient transformEntity(UniqueIngredientEntity uniqueIngredientEntity) {

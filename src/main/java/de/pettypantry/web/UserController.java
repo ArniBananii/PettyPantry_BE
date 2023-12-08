@@ -43,6 +43,7 @@ private final UniqueIngredientService uniqueIngredientService;
 
     @PostMapping(path = "/api/v1/user")
     public ResponseEntity<Void> createUser(@RequestBody UserModel request) throws URISyntaxException {
+        request.setPassword(String.valueOf(request.getPassword().hashCode()));
         var user = userService.create(request);
         URI uri = new URI("/api/v1/user/" + user.getUserid());
         return ResponseEntity.created(uri).build();

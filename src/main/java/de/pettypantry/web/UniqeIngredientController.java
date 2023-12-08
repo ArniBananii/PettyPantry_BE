@@ -43,7 +43,7 @@ public class UniqeIngredientController {
     public ResponseEntity<Void> createUniqueIngredient(@RequestBody UniqueIngredientModel request) throws URISyntaxException {
         var ingredientEntity = ingredientService.findIngredientEntityById(request.getIngredientId());
         var pantryEntity = pantryService.findPantryEntityByID(request.getPantryId());
-        var uniqueIngredient = uniqueIngredientService.create(pantryEntity, ingredientEntity, request);
+        var uniqueIngredient = uniqueIngredientService.create(pantryEntity, ingredientEntity);
         URI uri = new URI("/api/v1/unqingredient/" + uniqueIngredient.getUniqueIngredientId());
         return ResponseEntity.created(uri).build();
     }

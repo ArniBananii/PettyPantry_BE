@@ -12,13 +12,9 @@ public class UniqueIngredientModel {
     @JsonProperty("ingredientID")
     private int ingredientId;
 
-    @JsonProperty("expirationDate")
-    private LocalDate expirationDate;
-
-    public UniqueIngredientModel(int pantryId, int ingredientId, LocalDate expirationDate) {
+    public UniqueIngredientModel(int pantryId, int ingredientId) {
         this.pantryId = pantryId;
         this.ingredientId = ingredientId;
-        this.expirationDate = expirationDate;
     }
 
     public UniqueIngredientModel() {
@@ -30,9 +26,5 @@ public class UniqueIngredientModel {
 
     public int getIngredientId() {
         return ingredientId;
-    }
-
-    public LocalDate getExpirationDate() {
-        return expirationDate;
     }
 }

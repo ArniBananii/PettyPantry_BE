@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -28,8 +29,9 @@ public class UniqueIngredientService {
         return uniqueIngredients;
     }
 
-    public UniqueIngredient create(PantryEntity pantry, IngredientEntity ingredient, UniqueIngredientModel request) {
-        var uniqueIngredientEntity = new UniqueIngredientEntity(pantry, ingredient, request.getExpirationDate());
+    public UniqueIngredient create(PantryEntity pantry, IngredientEntity ingredient) {
+        LocalDate expDate = LocalDate.now().plusDays(ingredient.getValidNoOfDays());
+        var uniqueIngredientEntity = new UniqueIngredientEntity(pantry, ingredient, expDate);
         uniqueIngredientEntity = uniqueIngredientRepository.save(uniqueIngredientEntity);
         return transformEntity(uniqueIngredientEntity);
     }

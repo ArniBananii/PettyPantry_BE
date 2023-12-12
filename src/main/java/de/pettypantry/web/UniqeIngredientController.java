@@ -56,7 +56,6 @@ public class UniqeIngredientController {
     @GetMapping(path = "/api/v1/unqingredients/user/{userID}")
     public ResponseEntity<List<UniqueIngredient>> fetchUnqIngredientByUserID(@PathVariable int userID) {
         var user = userService.findUserEntityByID(userID);
-        ResponseEntity<List<UniqueIngredient>> resultList;
         if(user == null || user.getUserPantry() == null) {
             return ResponseEntity.notFound().build();
         }

@@ -1,10 +1,8 @@
 package de.pettypantry.web;
 
-import de.pettypantry.entity.UniqueIngredientEntity;
 import de.pettypantry.service.IngredientService;
 import de.pettypantry.service.PantryService;
 import de.pettypantry.service.UniqueIngredientService;
-import de.pettypantry.service.UserService;
 import de.pettypantry.web.api.Pantry;
 import de.pettypantry.web.api.UniqueIngredient;
 import de.pettypantry.web.models.UniqueIngredientModel;
@@ -48,7 +46,7 @@ public class UniqeIngredientController {
         if (uniqueIngredients == null || pantry == null) {
             return ResponseEntity.notFound().build();
         }
-        uniqueIngredients = uniqueIngredients.stream().filter(value -> value.getPantryId() == pantryID).collect(Collectors.toList());
+        uniqueIngredients = uniqueIngredients.stream().filter(value -> value.getPantryID() == pantryID).collect(Collectors.toList());
         return ResponseEntity.status(201).body(uniqueIngredients);
     }
 
@@ -58,7 +56,7 @@ public class UniqeIngredientController {
         var ingredientEntity = ingredientService.findIngredientEntityById(request.getIngredientId());
         var pantryEntity = pantryService.findPantryEntityByID(request.getPantryId());
         var uniqueIngredient = uniqueIngredientService.create(pantryEntity, ingredientEntity);
-        URI uri = new URI("/api/v1/unqingredient/" + uniqueIngredient.getUniqueIngredientId());
+        URI uri = new URI("/api/v1/unqingredient/" + uniqueIngredient.getUniqueIngredientID());
         return ResponseEntity.created(uri).build();
     }
 }

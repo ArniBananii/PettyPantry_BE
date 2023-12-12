@@ -2,20 +2,20 @@ package de.pettypantry.web.api;
 
 public class Pantry {
 
-    private int pantryid;
+    private int pantryID;
 
-    private int userid;
+    private int userID;
 
-    public Pantry(int pantryid, int userid) {
-        this.pantryid = pantryid;
-        this.userid = userid;
+    public Pantry(int pantryID, int userID) {
+        this.pantryID = pantryID;
+        this.userID = userID;
     }
 
-    public int getPantryid() {
-        return pantryid;
+    public int getPantryID() {
+        return pantryID;
     }
 
-    public int getUserid() {
-        return userid;
+    public int getUserID() {
+        return userID;
     }
 }

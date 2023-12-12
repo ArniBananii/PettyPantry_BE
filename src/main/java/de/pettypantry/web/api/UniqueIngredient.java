@@ -4,31 +4,31 @@ import java.time.LocalDate;
 
 public class UniqueIngredient {
 
-    private int uniqueIngredientId;
+    private int uniqueIngredientID;
 
-    private int pantryId;
+    private int pantryID;
 
-    private int ingredientid;
+    private int ingredientID;
 
     private LocalDate expirationDate;
 
-    public UniqueIngredient(int uniqueIngredientId, int pantryId, int ingredientid, LocalDate expirationDate) {
-        this.uniqueIngredientId = uniqueIngredientId;
-        this.pantryId = pantryId;
-        this.ingredientid = ingredientid;
+    public UniqueIngredient(int uniqueIngredientID, int pantryID, int ingredientID, LocalDate expirationDate) {
+        this.uniqueIngredientID = uniqueIngredientID;
+        this.pantryID = pantryID;
+        this.ingredientID = ingredientID;
         this.expirationDate = expirationDate;
     }
 
-    public int getUniqueIngredientId() {
-        return uniqueIngredientId;
+    public int getUniqueIngredientID() {
+        return uniqueIngredientID;
     }
 
-    public int getPantryId() {
-        return pantryId;
+    public int getPantryID() {
+        return pantryID;
     }
 
-    public int getIngredientid() {
-        return ingredientid;
+    public int getIngredientID() {
+        return ingredientID;
     }
 
     public LocalDate getExpirationDate() {

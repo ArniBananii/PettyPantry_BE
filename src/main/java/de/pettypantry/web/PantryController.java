@@ -39,7 +39,7 @@ public class PantryController {
     public ResponseEntity<Void> createPantry(@RequestBody PantryModel request) throws URISyntaxException {
         var user = userService.findUserEntityByID(request.getUserid());
         var pantry = pantryService.create(user);
-        URI uri = new URI("/api/v1/pantry/" + pantry.getPantryid());
+        URI uri = new URI("/api/v1/pantry/" + pantry.getPantryID());
         return ResponseEntity.created(uri).build();
     }
 }

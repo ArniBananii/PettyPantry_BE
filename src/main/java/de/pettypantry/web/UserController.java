@@ -5,7 +5,6 @@ import de.pettypantry.entity.UniqueIngredientEntity;
 import de.pettypantry.service.PantryService;
 import de.pettypantry.service.UniqueIngredientService;
 import de.pettypantry.service.UserService;
-import de.pettypantry.web.api.UniqueIngredient;
 import de.pettypantry.web.models.UserModel;
 import de.pettypantry.web.api.User;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +44,7 @@ private final UniqueIngredientService uniqueIngredientService;
     public ResponseEntity<Void> createUser(@RequestBody UserModel request) throws URISyntaxException {
         request.setPassword(String.valueOf(request.getPassword().hashCode()));
         var user = userService.create(request);
-        URI uri = new URI("/api/v1/user/" + user.getUserid());
+        URI uri = new URI("/api/v1/user/" + user.getUserID());
         return ResponseEntity.created(uri).build();
     }
 

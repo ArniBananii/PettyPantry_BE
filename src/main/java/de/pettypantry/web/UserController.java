@@ -58,6 +58,9 @@ private final UniqueIngredientService uniqueIngredientService;
     public ResponseEntity<Void> deleteUser(@PathVariable int userID) {
         var user = userService.findUserEntityByID(userID);
         boolean successful = false;
+        if(user == null) {
+            return ResponseEntity.notFound().build();
+        }
         if (user.getUserPantry() == null) {
             successful = userService.deleteById(userID);
         } else {

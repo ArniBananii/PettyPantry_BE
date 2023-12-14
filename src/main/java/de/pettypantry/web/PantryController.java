@@ -31,15 +31,10 @@ public class PantryController {
     @GetMapping(path = "/api/v1/pantry/{userid}")
     public ResponseEntity<Pantry> fetchPantryByUserId(@PathVariable int userid) {
         var user = userService.findUserEntityByID(userid);
+        if(user == null) {
+            return ResponseEntity.notFound().build();
+        }
         var pantry = pantryService.findById(user.getUserPantry().getPantryId());
         return pantry != null ? ResponseEntity.ok(pantry) : ResponseEntity.notFound().build();
-    }
-
-    @PostMapping(path = "/api/v1/pantry")
-    public ResponseEntity<Void> createPantry(@RequestBody PantryModel request) throws URISyntaxException {
-        var user = userService.findUserEntityByID(request.getUserid());
-        var pantry = pantryService.create(user);
-        URI uri = new URI("/api/v1/pantry/" + pantry.getPantryID());
-        return ResponseEntity.created(uri).build();
     }
 }

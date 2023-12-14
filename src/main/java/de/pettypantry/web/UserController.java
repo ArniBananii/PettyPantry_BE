@@ -44,6 +44,7 @@ private final UniqueIngredientService uniqueIngredientService;
     public ResponseEntity<Void> createUser(@RequestBody UserModel request) throws URISyntaxException {
         request.setPassword(String.valueOf(request.getPassword().hashCode()));
         var user = userService.create(request);
+        pantryService.create(userService.findUserEntityByID(user.getUserID()));
         URI uri = new URI("/api/v1/user/" + user.getUserID());
         return ResponseEntity.created(uri).build();
     }
@@ -57,22 +58,18 @@ private final UniqueIngredientService uniqueIngredientService;
     @DeleteMapping(path = "/api/v1/user/{userID}")
     public ResponseEntity<Void> deleteUser(@PathVariable int userID) {
         var user = userService.findUserEntityByID(userID);
-        boolean successful = false;
+        boolean successful;
         if(user == null) {
             return ResponseEntity.notFound().build();
         }
-        if (user.getUserPantry() == null) {
-            successful = userService.deleteById(userID);
-        } else {
-            PantryEntity pantry = user.getUserPantry();
-            Set<UniqueIngredientEntity> uniqueIngredientEntities = pantry.getIngredients();
-            if (!uniqueIngredientEntities.isEmpty()) {
-                for (UniqueIngredientEntity value : uniqueIngredientEntities) {
-                    uniqueIngredientService.deleteById(value.getUniqueIngredientId());
-                }
+        PantryEntity pantry = user.getUserPantry();
+        Set<UniqueIngredientEntity> uniqueIngredientEntities = pantry.getIngredients();
+        if (!uniqueIngredientEntities.isEmpty()) {
+            for (UniqueIngredientEntity value : uniqueIngredientEntities) {
+                uniqueIngredientService.deleteById(value.getUniqueIngredientId());
             }
-            pantryService.deleteById(pantry.getPantryId());
         }
+        pantryService.deleteById(pantry.getPantryId());
         successful = userService.deleteById(userID);
         return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }

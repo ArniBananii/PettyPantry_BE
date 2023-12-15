@@ -34,14 +34,18 @@ private final UniqueIngredientService uniqueIngredientService;
         return ResponseEntity.status(201).body(userService.findAll());
     }
 
-    @GetMapping(path = "/api/v1/user/{userID}")
-    public ResponseEntity<User> fetchUserById(@PathVariable int userID) {
-        var user = userService.findByID(userID);
+    @GetMapping(path = "/api/v1/user/{userName}")
+    public ResponseEntity<User> fetchUserById(@PathVariable String userName) {
+        var user = userService.findByUserName(userName);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
     @PostMapping(path = "/api/v1/user")
     public ResponseEntity<Void> createUser(@RequestBody UserModel request) throws URISyntaxException {
+        var userCheck = userService.findByUserName(request.getUserName());
+        if (userCheck != null) {
+            return ResponseEntity.status(409).build();
+        }
         request.setPassword(String.valueOf(request.getPassword().hashCode()));
         var user = userService.create(request);
         pantryService.create(userService.findUserEntityByID(user.getUserID()));
@@ -70,7 +74,7 @@ private final UniqueIngredientService uniqueIngredientService;
             }
         }
         pantryService.deleteById(pantry.getPantryId());
-        successful = userService.deleteById(userID);
+        successful = userService.deleteById(user.getUserId());
         return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }

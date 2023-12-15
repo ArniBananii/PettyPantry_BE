@@ -8,4 +8,5 @@ import java.util.List;
 //JpaRepo gives us all the CRUD methods for sql @runtime !
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
+    UserEntity findByUserName(String userName);
 }

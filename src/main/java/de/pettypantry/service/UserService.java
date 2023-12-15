@@ -27,6 +27,14 @@ public class UserService {
         return userList;
     }
 
+    public User findByUserName(String userName) {
+        var userEntity = userRepository.findByUserName(userName);
+        if(userEntity == null) {
+            return null;
+        }
+        return transformEntity(userEntity);
+    }
+
     public void save(UserEntity user) {
         userRepository.save(user);
     }

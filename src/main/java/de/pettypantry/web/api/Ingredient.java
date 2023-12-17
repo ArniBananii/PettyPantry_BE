@@ -5,11 +5,13 @@ public class Ingredient {
     private int ingredientID;
     private String ingredientName;
     private int validNoOfDays;
+    private String imageURL;
 
-    public Ingredient(int ingredientID, String ingredientName, int validNoOfDays) {
+    public Ingredient(int ingredientID, String ingredientName, int validNoOfDays, String imageURL) {
         this.ingredientID = ingredientID;
         this.ingredientName = ingredientName;
         this.validNoOfDays = validNoOfDays;
+        this.imageURL = imageURL;
     }
 
     public int getIngredientID() {

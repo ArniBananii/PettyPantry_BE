@@ -40,7 +40,7 @@ public class IngredientService {
     }
 
     public Ingredient create(IngredientModel request) {
-        var ingredientEntity = new IngredientEntity(request.getIngredientName(), request.getValidNoOfDays());
+        var ingredientEntity = new IngredientEntity(request.getIngredientName(), request.getValidNoOfDays(), request.getImageURL());
         ingredientEntity = ingredientRepository.save(ingredientEntity);
         return transformEntity(ingredientEntity);
     }
@@ -60,6 +60,7 @@ public class IngredientService {
     public Ingredient transformEntity(IngredientEntity ingredientEntity) {
         return new Ingredient(ingredientEntity.getIngredientId(),
                 ingredientEntity.getIngredientName(),
-                ingredientEntity.getValidNoOfDays());
+                ingredientEntity.getValidNoOfDays(),
+                ingredientEntity.getImageURL());
     }
 }

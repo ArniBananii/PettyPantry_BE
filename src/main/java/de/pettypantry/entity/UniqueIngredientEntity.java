@@ -13,11 +13,11 @@ public class UniqueIngredientEntity {
     private int uniqueIngredientId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pantryid", referencedColumnName = "pantryId")
+    @JoinColumn(name = "pantryid", referencedColumnName = "pantryId", nullable = false)
     private PantryEntity pantry;
 
     @ManyToOne
-    @JoinColumn(name = "ingredientid", referencedColumnName = "ingredientId")
+    @JoinColumn(name = "ingredientid", referencedColumnName = "ingredientId", nullable = false)
     private IngredientEntity ingredient;
 
     @Column(name = "expDate", nullable = false)

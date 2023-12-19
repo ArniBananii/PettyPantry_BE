@@ -12,7 +12,7 @@ public class UniqueIngredientEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uniqueIngredientId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "pantryid", referencedColumnName = "pantryId", nullable = false)
     private PantryEntity pantry;
 

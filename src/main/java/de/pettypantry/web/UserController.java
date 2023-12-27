@@ -40,7 +40,7 @@ private final UniqueIngredientService uniqueIngredientService;
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @GetMapping(path = "/api/v1/user")
+    @PostMapping(path = "/api/v1/user")
     public ResponseEntity<User> fetchUserByNamePassword(@RequestBody UserModel request) {
         var user = userService.findByUserName(request.getUserName());
         request.setPassword(String.valueOf(request.getPassword().hashCode()));
@@ -53,7 +53,7 @@ private final UniqueIngredientService uniqueIngredientService;
         return ResponseEntity.status(401).build();
     }
 
-    @PostMapping(path = "/api/v1/user")
+    @PostMapping(path = "/api/v1/register")
     public ResponseEntity<Void> createUser(@RequestBody UserModel request) throws URISyntaxException {
         var userCheck = userService.findByUserName(request.getUserName());
         if (userCheck != null) {

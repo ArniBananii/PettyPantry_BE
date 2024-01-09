@@ -33,4 +33,8 @@ public class Ingredient {
     public void setValidNoOfDays(int validNoOfDays) {
         this.validNoOfDays = validNoOfDays;
     }
+
+    public String getImageURL() {
+        return imageURL;
+    }
 }

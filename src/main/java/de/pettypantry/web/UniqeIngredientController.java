@@ -8,6 +8,7 @@ import de.pettypantry.web.api.Pantry;
 import de.pettypantry.web.api.UniqueIngredient;
 import de.pettypantry.web.models.UniqueIngredientModel;
 import de.pettypantry.web.models.UnqDeleteBody;
+import de.pettypantry.web.models.UnqDeleteSingleModelTest;
 import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +48,13 @@ public class UniqeIngredientController {
                 break;
             }
         }
+        //TODO: Where is successful set to false?
+        return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping(path = "/api/v1/unqingredient/{unqIngID}")
+    public ResponseEntity<Void> deleteUniqueIngredient(@PathVariable int unqIngID) {
+        boolean successful = uniqueIngredientService.deleteById(unqIngID);
         return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 

@@ -2,18 +2,20 @@ package de.pettypantry.web.api;
 
 public class Ingredient {
 
-    private int ingredientId;
+    private int ingredientID;
     private String ingredientName;
     private int validNoOfDays;
+    private String imageURL;
 
-    public Ingredient(int ingredientId, String ingredientName, int validNoOfDays) {
-        this.ingredientId = ingredientId;
+    public Ingredient(int ingredientID, String ingredientName, int validNoOfDays, String imageURL) {
+        this.ingredientID = ingredientID;
         this.ingredientName = ingredientName;
         this.validNoOfDays = validNoOfDays;
+        this.imageURL = imageURL;
     }
 
-    public int getIngredientId() {
-        return ingredientId;
+    public int getIngredientID() {
+        return ingredientID;
     }
 
     public String getIngredientName() {
@@ -30,5 +32,9 @@ public class Ingredient {
 
     public void setValidNoOfDays(int validNoOfDays) {
         this.validNoOfDays = validNoOfDays;
+    }
+
+    public String getImageURL() {
+        return imageURL;
     }
 }

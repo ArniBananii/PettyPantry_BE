@@ -27,13 +27,30 @@ public class UserService {
         return userList;
     }
 
+    public User findByUserName(String userName) {
+        var userEntity = userRepository.findByUserName(userName);
+        if(userEntity == null) {
+            return null;
+        }
+        return transformEntity(userEntity);
+    }
+
+    public void save(UserEntity user) {
+        userRepository.save(user);
+    }
+
     public User findByID(int id) {
         var userEntity = userRepository.findById(id);
         return userEntity.map(this::transformEntity).orElse(null);
     }
 
+    public UserEntity findUserEntityByID(int id) {
+        var userEntityOptional = userRepository.findById(id);
+        return userEntityOptional.orElse(null);
+    }
+
     public User create(UserModel request) {
-        var userEntity = new UserEntity(request.getFirstName(), request.getLastName());
+        var userEntity = new UserEntity(request.getUserName(), request.getPassword());
         userEntity = userRepository.save(userEntity);
         return transformEntity(userEntity);
     }
@@ -44,8 +61,8 @@ public class UserService {
             return null;
         }
         var userEntity = userEntityOptional.get();
-        userEntity.setFirstName(model.getFirstName());
-        userEntity.setLastName(model.getLastName());
+        userEntity.setUserName(model.getUserName());
+        userEntity.setLastName(model.getPassword());
         userEntity = userRepository.save(userEntity);
         return transformEntity(userEntity);
     }
@@ -60,7 +77,7 @@ public class UserService {
 
     private User transformEntity(UserEntity userEntity) {
         return new User(userEntity.getUserId(),
-                userEntity.getFirstName(),
+                userEntity.getUserName(),
                 userEntity.getLastName()
         );
     }

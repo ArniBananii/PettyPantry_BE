@@ -1,8 +1,10 @@
 package de.pettypantry.web;
 
+
+import de.pettypantry.service.PantryService;
 import de.pettypantry.service.UserService;
-import de.pettypantry.web.models.UserModel;
-import de.pettypantry.web.api.User;
+import de.pettypantry.web.api.Pantry;
+import de.pettypantry.web.models.PantryModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,41 +15,26 @@ import java.util.List;
 @RestController
 public class PantryController {
 
+    private final UserService userService;
+    private final PantryService pantryService;
 
-private final UserService userService;
-
-    public PantryController(UserService userService) {
+    public PantryController(UserService userService, PantryService pantryService) {
         this.userService = userService;
+        this.pantryService = pantryService;
     }
 
-    @GetMapping(path = "/api/v1/users")
-    public ResponseEntity<List<User>> fetchUsers(){
-        return ResponseEntity.status(201).body(userService.findAll());
+    @GetMapping(path = "/api/v1/pantries")
+    public ResponseEntity<List<Pantry>> fetchPantries() {
+        return ResponseEntity.status(201).body(pantryService.findAll());
     }
 
-    @GetMapping(path = "/api/v1/users/{userID}")
-    public ResponseEntity<User> fetchUserById(@PathVariable int userID) {
-        var user = userService.findByID(userID);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
-    }
-
-    @PostMapping(path = "/api/v1/users")
-    public ResponseEntity<Void> createUser(@RequestBody UserModel request) throws URISyntaxException {
-        var user = userService.create(request);
-        URI uri = new URI("/api/v1/users/" + user.getUserid());
-        return ResponseEntity.created(uri).build();
-    }
-
-    @PutMapping(path = "/api/v1/users/{userID}")
-    public ResponseEntity<User> updateUser(@PathVariable int userID, @RequestBody UserModel request) {
-        var user = userService.update(userID, request);
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
-    }
-
-    @DeleteMapping(path = "/api/v1/users/{userID}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int userID) {
-        boolean successful = userService.deleteById(userID);
-        return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    @GetMapping(path = "/api/v1/pantry/{userid}")
+    public ResponseEntity<Pantry> fetchPantryByUserId(@PathVariable int userid) {
+        var user = userService.findUserEntityByID(userid);
+        if(user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        var pantry = pantryService.findById(user.getUserPantry().getPantryId());
+        return pantry != null ? ResponseEntity.ok(pantry) : ResponseEntity.notFound().build();
     }
 }
-

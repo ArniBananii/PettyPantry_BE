@@ -4,33 +4,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class IngredientModel {
 
-    @JsonProperty("Name")
+    @JsonProperty("name")
     private String ingredientName;
 
     @JsonProperty("validDays")
     private int validNoOfDays;
 
+    @JsonProperty("imageURL")
+    private String imageURL;
+
     public IngredientModel() {
     }
 
-    public IngredientModel(String ingredientName, int validNoOfDays) {
+    public IngredientModel(String ingredientName, int validNoOfDays, String imageURL) {
         this.ingredientName = ingredientName;
         this.validNoOfDays = validNoOfDays;
+        this.imageURL = imageURL;
     }
 
     public String getIngredientName() {
         return ingredientName;
     }
 
-    public void setIngredientName(String ingredientName) {
-        this.ingredientName = ingredientName;
-    }
-
     public int getValidNoOfDays() {
         return validNoOfDays;
     }
 
-    public void setValidNoOfDays(int validNoOfDays) {
-        this.validNoOfDays = validNoOfDays;
+    public String getImageURL() {
+        return imageURL;
     }
 }

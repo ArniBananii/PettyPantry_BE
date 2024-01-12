@@ -43,14 +43,15 @@ private final UniqueIngredientService uniqueIngredientService;
     @PostMapping(path = "/api/v1/user")
     public ResponseEntity<User> fetchUserByNamePassword(@RequestBody UserModel request) {
         var user = userService.findByUserName(request.getUserName());
+        var userEntity = userService.findEntityByUserName(request.getUserName());
         request.setPassword(String.valueOf(request.getPassword().hashCode()));
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
-        if (user.getPassword().equals(request.getPassword())) {
+        if (userEntity.getPassword().equals(request.getPassword())) {
             return ResponseEntity.ok(user);
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping(path = "/api/v1/register")

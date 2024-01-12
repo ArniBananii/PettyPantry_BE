@@ -35,6 +35,11 @@ public class UserService {
         return transformEntity(userEntity);
     }
 
+    public UserEntity findEntityByUserName(String userName) {
+        var userEntity = userRepository.findByUserName(userName);
+        return userEntity;
+    }
+
     public void save(UserEntity user) {
         userRepository.save(user);
     }
@@ -77,8 +82,7 @@ public class UserService {
 
     private User transformEntity(UserEntity userEntity) {
         return new User(userEntity.getUserId(),
-                userEntity.getUserName(),
-                userEntity.getLastName()
+                userEntity.getUserName()
         );
     }
 }

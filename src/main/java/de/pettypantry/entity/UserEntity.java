@@ -40,7 +40,7 @@ public class UserEntity {
         this.userName = firstName;
     }
 
-    public String getLastName() {
+    public String getPassword() {
         return password;
     }
 

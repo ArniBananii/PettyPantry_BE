@@ -51,7 +51,7 @@ private final UniqueIngredientService uniqueIngredientService;
         if (userEntity.getPassword().equals(request.getPassword())) {
             return ResponseEntity.ok(user);
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.status(401).build();
     }
 
     @PostMapping(path = "/api/v1/register")

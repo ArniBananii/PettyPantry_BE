@@ -12,11 +12,14 @@ public class UniqueIngredient {
 
     private LocalDate expirationDate;
 
-    public UniqueIngredient(int uniqueIngredientID, int pantryID, int ingredientID, LocalDate expirationDate) {
+    private String name;
+
+    public UniqueIngredient(int uniqueIngredientID, int pantryID, int ingredientID, LocalDate expirationDate, String name) {
         this.uniqueIngredientID = uniqueIngredientID;
         this.pantryID = pantryID;
         this.ingredientID = ingredientID;
         this.expirationDate = expirationDate;
+        this.name = name;
     }
 
     public int getUniqueIngredientID() {
@@ -33,5 +36,9 @@ public class UniqueIngredient {
 
     public LocalDate getExpirationDate() {
         return expirationDate;
+    }
+
+    public String getName() {
+        return name;
     }
 }

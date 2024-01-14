@@ -16,10 +16,13 @@ public class UniqueIngredientService {
 
     private final UniqueIngredientRepository uniqueIngredientRepository;
 
+    private final IngredientRepository ingredientRepository;
+
     Logger logger = LoggerFactory.getLogger(UserService.class);
 
-    public UniqueIngredientService(UniqueIngredientRepository uniqueIngredientRepository) {
+    public UniqueIngredientService(UniqueIngredientRepository uniqueIngredientRepository, IngredientRepository ingredientRepository) {
         this.uniqueIngredientRepository = uniqueIngredientRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
     public List<UniqueIngredient> findAll() {
@@ -52,6 +55,7 @@ public class UniqueIngredientService {
         return new UniqueIngredient(uniqueIngredientEntity.getUniqueIngredientId(),
                 uniqueIngredientEntity.getPantry().getPantryId(),
                 uniqueIngredientEntity.getIngredient().getIngredientId(),
-                uniqueIngredientEntity.getExpirationDate());
+                uniqueIngredientEntity.getExpirationDate(),
+                uniqueIngredientEntity.getIngredient().getIngredientName());
     }
 }

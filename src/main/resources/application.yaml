@@ -2,9 +2,9 @@
 
 spring:
   datasource:
-    username: ppadmin
-    password: lBGZyi9aqAA4NwYX69mzfIyfgCZduEWm
-    url: jdbc:postgresql://ppadmin:lBGZyi9aqAA4NwYX69mzfIyfgCZduEWm@dpg-cl1b2gop2gis738unh1g-a/pettypantry
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    url: ${DATASOURCE_URL}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 5
